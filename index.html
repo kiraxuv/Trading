@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@magiciankira - Telegram Prediction Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="bg-animated">
+    <canvas id="stars-canvas"></canvas>
+  </div>  <div class="container">
+    <div class="profile-pic">
+      <img src="sergio.jpg" alt="Magician Kira">
+    </div>
+    <h1>@MAGICIANKIRA</h1>
+    <p>India's #1 Prediction Channel for Color & Game Lovers!</p><a href="https://t.me/magiciankira" target="_blank" class="join-btn">🚀 JOIN TELEGRAM NOW</a>
+
+<div class="offer-box">
+  🎁 Hurry! Offer ends in <span id="timer">20s</span>
+</div>
+
+<ul class="features">
+  <li>🧠 Accurate Big-Small Predictions</li>
+  <li>💸 Earn Daily with VIP Tips</li>
+  <li>📊 Expert Strategy System</li>
+  <li>📣 Instant Result Updates</li>
+  <li>👑 Trusted by Thousands of Users</li>
+</ul>
+
+<a href="https://t.me/magiciankira" target="_blank" class="join-btn">🚀 JOIN TELEGRAM NOW</a>
+
+<p class="footer">Made with ❤️ by Team Kira XUV</p>
+
+  </div>  <script>
+    // Countdown Timer
+    let seconds = 20;
+    const timer = document.getElementById('timer');
+    const countdown = setInterval(() => {
+      seconds--;
+      if (seconds <= 0) {
+        clearInterval(countdown);
+        timer.textContent = 'Offer Expired!';
+      } else {
+        timer.textContent = `${seconds}s`;
+      }
+    }, 1000);
+
+    // Canvas Background Stars
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const starCount = 100;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createStars() {
+      stars = [];
+      for (let i = 0; i < starCount; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5,
+          alpha: Math.random(),
+          speed: Math.random() * 0.05 + 0.02
+        });
+      }
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let star of stars) {
+        star.alpha += star.speed;
+        if (star.alpha > 1 || star.alpha < 0) star.speed *= -1;
+        ctx.beginPath();
+        ctx.globalAlpha = star.alpha;
+        ctx.fillStyle = '#ffffff';
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(animateStars);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createStars();
+    });
+
+    resizeCanvas();
+    createStars();
+    animateStars();
+  </script></body>
+</html>
